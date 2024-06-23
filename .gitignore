@@ -1,0 +1,3 @@
+# Gitignore file 
+#Ignore .pth files
+*.pth
