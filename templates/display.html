@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Image</title>
+    <title>Display Image and Mask</title>
     <style>
         body, html {
             height: 100%;
@@ -14,7 +14,7 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
         }
-        .image-container {
+        .container {
             text-align: center;
             width: 100%;
             height: 100%;
@@ -22,6 +22,9 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+        }
+        .image-container {
+            margin: 20px;
         }
         img {
             max-width: 90%;
@@ -46,9 +49,19 @@
     </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="{{ url_for('static', filename='uploads/' ~ filename) }}" alt="Uploaded Image">
-        <br>
+    <div class="container">
+        <!--<div class="image-container">
+            <h1>Uploaded Image</h1>
+            <img src="{{ url_for('static', filename='uploads/' ~ filename) }}" alt="Uploaded Image">
+        </div>-->
+        <div class="image-container">
+            <h1>Generated Mask</h1>
+            {% if masks_path %}
+                <img src="{{ url_for('static', filename='masks/' ~ filename) }}" alt="Generated Mask">
+            {% else %}
+                <p>No mask generated.</p>
+            {% endif %}
+        </div>
         <a href="{{ url_for('upload_file') }}">Upload Another Image</a>
     </div>
 </body>
